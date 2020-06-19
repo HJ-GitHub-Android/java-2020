@@ -1,0 +1,560 @@
+Index: src/布局.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/布局.java	(date 1592545767600)
++++ src/布局.java	(date 1592545767600)
+@@ -0,0 +1,16 @@
++import java.awt.*;
++public class 布局 {
++    public static void main(String[] args) {
++        Frame f=new Frame("GridLayout");
++        f.setLayout(new GridLayout(3,3));
++        f.setSize(300,300);
++        f.setLocation(400,300);
++        for (int i=1;i<=9;i++){
++        Button btn=new Button("btn"+i);
++        f.add(btn);
++        MyWindowListener mw = new MyWindowListener();
++        f.addWindowListener(mw);
++        }
++        f.setVisible(true);
++        }
++        }
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(date 1592547025649)
++++ .idea/vcs.xml	(date 1592547025649)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/布局1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/布局1.java	(date 1591932102169)
++++ src/布局1.java	(date 1591932102169)
+@@ -0,0 +1,45 @@
++import java.awt.*;
++public class 布局1 {
++    public static void main(String[] args) {
++        Frame f = new Frame("GridLayout");
++        new Layout("GridLayout");
++    }
++}
++class Layout extends Frame{
++    public Layout(String title){
++        GridBagLayout layout=new GridBagLayout();
++        GridBagConstraints q=new GridBagConstraints();
++        this.setLayout(layout);
++        q.fill=GridBagConstraints.BOTH;
++        q.weightx=1;q.weighty=1;
++        this.addComponent("按钮1",layout,q);
++        this.addComponent("按钮2",layout,q);
++        this.addComponent("按钮3",layout,q);
++        q.gridwidth=GridBagConstraints.REMAINDER;
++        this.addComponent("按钮4",layout,q);
++        q.weightx=0;q.weighty=0;
++        addComponent("按钮5",layout,q);
++        q.gridwidth=1;
++        this.addComponent("按钮6",layout,q);
++        q.gridwidth=GridBagConstraints.REMAINDER;
++        this.addComponent("按钮7",layout,q);
++        q.gridheight=2;
++        q.gridwidth=1;
++        q.weightx=2;
++        q.weighty=2;
++        this.addComponent("按钮8",layout,q);
++        q.gridwidth=GridBagConstraints.REMAINDER;
++        q.gridheight=1;
++        this.addComponent("按钮9",layout,q);
++        this.addComponent("按钮10",layout,q);
++        this.pack();
++        this.setVisible(true);
++    }
++    private void addComponent(String name,GridBagLayout layout,GridBagConstraints q){
++        Button bt=new Button(name);
++        layout.setConstraints(bt,q);
++        this.add(bt);
++        MyWindowListener mw = new MyWindowListener();
++        this.addWindowListener(mw);
++    }
++}
+Index: src/布局2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/布局2.java	(date 1591936853017)
++++ src/布局2.java	(date 1591936853017)
+@@ -0,0 +1,45 @@
++import java.awt.*;
++import javax.swing.*;
++import java.awt.event.*;
++public class 布局2 {
++    public static void main(String[] args) {
++        Frame f = new Frame("GridLayout");
++        new Layout("GridLayout");
++    }
++}
++class Cardlayout extends Frame implements ActionListener{
++    Panel cardPanel=new Panel();
++    Panel controlpaPanel=new Panel();
++    Button nextbutton,preButton;
++    CardLayout cardLayout=new CardLayout();
++    public Cardlayout(){
++        setSize(300,200);
++        setVisible(true);
++        this.addWindowListener(new WindowAdapter() {
++            public void windowClosing(WindowEvent e) {
++                Cardlayout.this.dispose();
++            }
++        });
++        cardPanel.setLayout(cardLayout);
++        cardPanel.add(new Label("第一个界面",Label.CENTER));
++        cardPanel.add(new Label("第二个界面",Label.CENTER));
++        cardPanel.add(new Label("第三个界面",Label.CENTER));
++        nextbutton=new Button("下一张卡片");
++        preButton=new Button("上一张卡片");
++        nextbutton.addActionListener(this);
++        preButton.addActionListener(this);
++        controlpaPanel.add(preButton);
++        controlpaPanel.add(nextbutton);
++        this.add(cardPanel,BorderLayout.CENTER);
++        this.add(controlpaPanel,BorderLayout.SOUTH);
++    }
++    public void actionPerformed(ActionEvent e){
++        if (e.getSource()==nextbutton){
++            cardLayout.next(cardPanel);
++        }
++        if (e.getSource()==preButton){
++            cardLayout.previous(cardPanel);
++        }
++    }
++}
++
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(date 1590487213237)
++++ .idea/misc.xml	(date 1590487213237)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="true" project-jdk-name="13" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(date 1590487213318)
++++ .idea/modules.xml	(date 1590487213318)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/HJ.iml" filepath="$PROJECT_DIR$/HJ.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.gitignore	(date 1590487217666)
++++ .idea/.gitignore	(date 1590487217666)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: HJ.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- HJ.iml	(date 1590487213001)
++++ HJ.iml	(date 1590487213001)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: src/UserLogin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/UserLogin.java	(date 1591680219494)
++++ src/UserLogin.java	(date 1591680219494)
+@@ -0,0 +1,72 @@
++import java.awt.*;
++import java.awt.event.*;
++public class UserLogin {
++    Frame app=new Frame("TextField 组件");
++    Label lblName=new Label("UserName:");
++    static TextField txtName=new TextField();
++    Label lblPass=new Label("password:");
++    static TextField txtPass=new TextField();
++    public  UserLogin(){
++        app.setSize(300,150);
++        app.setLayout(null);
++        lblName.setBounds(60,50,70,20);
++        txtName.setBounds(135,50,100,20);
++        txtName.addKeyListener(new keyHandler());
++        txtName.addFocusListener(new focusHandler());
++        lblPass.setBounds(60,90,70,20);
++        txtPass.setBounds(135,90,100,20);
++        txtPass.setEchoChar('*');
++        txtPass.addKeyListener(new keyHandler());
++        txtPass.addFocusListener(new focusHandler());
++        app.add(lblName);app.add(txtName);
++        app.add(lblPass);app.add(txtPass);
++        app.setLocation(200,100);
++        app.setVisible(true);
++        MyWindowListener mw = new MyWindowListener();
++        app.addWindowListener(mw);
++    }
++    public static void main (String[]args){
++        UserLogin tft=new UserLogin();
++    }
++}
++class keyHandler implements KeyListener{
++    public void keyPressed(KeyEvent e){
++        Object ob=e.getSource();
++        if((ob==UserLogin.txtName)&&(e.getKeyCode()==10)){
++            System.out.println(UserLogin.txtName.getText());
++        }
++        else if((ob==UserLogin.txtPass)&&e.getKeyCode()==10){
++            System.out.println(UserLogin.txtPass.getText());
++        }
++    }
++    public void keyReleased(KeyEvent e){
++
++    }
++    public void keyTyped(KeyEvent e){
++
++    }
++}
++class focusHandler implements FocusListener{
++    @Override
++    public void focusGained(FocusEvent e) {
++
++    }
++
++    @Override
++    public void focusLost(FocusEvent e) {
++        Object ob=e.getCause();
++        if(ob==UserLogin.txtName){
++            System.out.println(UserLogin.txtName.getText());
++        }
++        else if(ob==UserLogin.txtPass){
++            System.out.println(UserLogin.txtPass.getText());
++        }
++    }
++}
++class MyWindowListener extends WindowAdapter{
++    public void windowClosing(WindowEvent e){
++        Window window=e.getWindow();
++        window.setVisible(false);
++        window.dispose();
++    }
++}
+Index: src/HelloWorld.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/HelloWorld.java	(date 1590489945066)
++++ src/HelloWorld.java	(date 1590489945066)
+@@ -0,0 +1,5 @@
++public class HelloWorld {
++    public static void main(String[] args) {
++        System.out.println("Hello World!");
++    }
++}
+Index: src/布局管理器.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/布局管理器.java	(date 1591679899499)
++++ src/布局管理器.java	(date 1591679899499)
+@@ -0,0 +1,25 @@
++import java.awt.*;
++import java.awt.event.WindowEvent;
++import java.awt.event.WindowListener;
++
++public class 布局管理器 {
++        public static void main(String[] args) {
++            final Frame f=new Frame("BorderLayout");
++            f.setLayout(new BorderLayout());
++            f.setSize(300,300);
++            f.setLocation(300,200);
++            f.setVisible(true);
++            Button but1=new Button("东部");
++            Button but2=new Button("西部");
++            Button but3=new Button("南部");
++            Button but4=new Button("北部");
++            Button but5=new Button("中部");
++            f.add(but1,BorderLayout.EAST);
++            f.add(but2,BorderLayout.WEST);
++            f.add(but3,BorderLayout.SOUTH);
++            f.add(but4,BorderLayout.NORTH);
++            f.add(but5,BorderLayout.CENTER);
++            MyWindowListener mw = new MyWindowListener();
++            f.addWindowListener(mw);
++        }
++    }
+diff --git out/production/HJ/Cardlayout$1.class out/production/HJ/Cardlayout$1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..9b7a81c99458aa7218f5e932c349b01afa60d217
+GIT binary patch
+literal 620
+zc$|GvQA-;^5dJ2fxyyNpF;#0d))st-5lroySb`;3S~z`C(&sg|)Gg<2xV<FwP4E{5
+zYFqlyAJG4izah?E#Q0FUusgHgeDlo=^Y`xe9{>k<T|xnKE}Q`KC=!B>NTXPM(}Qe#
+zpHR#$mDzs7csL6j`tVS4;RjeiK&XEeL(vkWtR;ss$y%RP66w+VNc1zAvc@}=sH{zx
+zYwUD=RIuox8eqw$`ZHC68!6M*MiLeqPs{Ce2~I~xHV~>ro(`@qWO^<xVn%AA?uoc7
+zQf2=Spkv!6RKlmz91_Z-ytPiOjY_@{wi@9-dq1{*UYA&{{y!4WaHa=oPkvCgaxnRI
+zGZ|mM-Lom&?{U(b7CVvIrH%;RsWjO~ZFt_`Q<BKE6ANRc!7E;b$2*~F)vkiQ0^bGH
+zKzPPpoBtN^o4dE5=1;ieoU_btkvU-I3cssU7Tf1Q?#<_M!Wv#YXdSV&EU)<;^aJIY
+qlAq(ta9L}n<~^!;SjPruJE-S5n|R6A;jNail_M3N#Oh2d@VN(U!hCK3
+
+diff --git out/production/HJ/focusHandler.class out/production/HJ/focusHandler.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..ae729168f2be7e042b6fec24e1590c1d38aa63e6
+GIT binary patch
+literal 1096
+zc$|e)+foxj5IqwJOTuz7T$GD|Tr>e>y`e$?siH)!T9B$B?~^db#blS-ogn^&UxCl?
+zfK@*D0e+KZd1e#w63~a;neOdAeNIo$e*OOW3xGvDNh5(43#~SiXcOq!mxt1+NWbj7
+zEbgn47HC`cd{3_mv}AL;X|y9{A#I}rw!mN<F5hWK9V%Zt8$qcSJvCc__OjCJvKA?U
+z$!yNOG;%5q%BRqUZVNp&t{@|jdKIbA4a%M`VCf^hC94GL`vtS3j`W77DtpZAL%)Rq
+z8&`4d4+(|$kyceQ4{9XTUr+V|XFK$KUC^PD)qEO57`8BC<2ptKGR*}@fKrS}0zZ}1
+z@il?Ugc!#S3llabF(uG@K^bBk7^^}#{n=)S+^*4o)5a|$-U!~7QDh+}V81r4dM^FF
+ziV7{v3XELTOV^`TUxfm#>%ks-)$Mw|+NxEHD%_F93OyM&D9OsM3_W8voUQte7YTH^
+zzn94ibj0>ENf35mG<*30lDvQ*)bKxIc%m_&8$@hlA}AU<e-9g@ItyBs-fqf+2EBA4
+zsD&l9;Tfard?@BkDtq(7r{whtd!^W|6@jt;%$YzkUU_6$j=sPQ??DS6jz6tA?i{Yd
+zcxFC9oN$xCZNA%L=UvS6ZPx=BdWWl^_g*7;A&y6L;zFD_Q2*FSG`stF5Z7BchxlNw
+zq~S4p25WQf6rIP&oT8VTGYp<#>>~!~ojyi)?47QAPhuga;1Eli%bmm$ndUK!6-;22
+w1lD2_<8}CR5>A6elFfLCM=bxC-V_qw%*{w-=va)^ED;PyGjy5%fz`FaA0_(q@c;k-
+
+diff --git out/production/HJ/Layout.class out/production/HJ/Layout.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..4ff72544404834a81a5b9774a552359db234ca0c
+GIT binary patch
+literal 1707
+zc$|e)TW=dh6#m9u$LsAhPTVxjrML7#?TuY0O<Hm(Ax+wpmUV!pIHX)R@z$Q!*=^VB
+zn7kmQK7slIPw>J^pAZsKgyJAV`2qZoBJn2>XLiljO#|4{&YUx6zWKg$&dl$B{qh@t
+zN!-^EK{O79BZdx!&U@yDnKv6=e!(@@EryQE!WP~PLo}T!#-TFwh9TEoQJOQ$hPmm~
+zJq>XQbbw)SZ@|1`*F4u0wpY`jA*!Jh$vC<=x{;zI0sw|Y&GP=452lR}Ch!$Z+bmn|
+zbf%afkRFc1=w(puifWaC-H^^cj(!X<#2c0<SG-Tje^vUAavW>(Z>l&!#vhNr`19)@
+zM<tsfj#D_zz|B%=-dTU(*p^KsZnj8NO}m_5@?2q;r;YvPzwB>QO`KJn4UfE_;#_Eq
+zNrD*;U8+fxX>UW6yo!o!7&5Nnd}v%$F%lY=R9py+S0&Oo$3=;xNu-J|w__H;PsL;y
+zJfUJbG$vKN#-O$mG9okbI>)SR2<3sfc3(Q?IOcJcfT>7DQ4_0G>JBA+M|Q;mLo$><
+zSNA-})^H7P$fml%aCo0IW{R?5-sCV)ptd8>wtO*+x0OFE$p7V7(tL~KZM;M6N|j{L
+z_l3#q=Zs^Cp{uaDEbNlgFhtF>Y|GVfE9loE$1>hy=qB73Ll{oAonmbeSpLNbqDHBj
+zcS@A8q#<l;vA(`)xwlO}hbhBZGpj|@71C}w6|W*F4XV-VE{2#VydeCgT+$V)wysUz
+zzqKb_g@+8s{xgGgtnFX=$SOf~8+%Gh>yh<_WUx0&w4yCJb$88L5RxN*_Vc4>Tc3}f
+zmk2mX>5KRc7y*+VLEjaC)uGTIc&hJ!?IOOigG6B$8jXBW&o*%|r)=X;F1d{(@-wKX
+zj%RaCoYYfiTH`DJn2T;Bt*3?qqf>@=`r*02qxj4D_Sn(Dh;3ucU(WU5lHBJHv~%Kl
+zuv{P0Q&X)YF9%~2GrH2ml`UV^9r|w28v`Urk_L_g=z)BV4&pe;Pa}yDbYX&Cyji5^
+zZX7~^B9`e9`xw0_;Rvee!$aD!i2;0uK|I1yd`XyJ5yH1Pf$u1hPcVcZ=&AY%r?G=G
+z_!VdIKAoxuiNpu^&`<PJd_=fZ2yEdKn8dIL-(wYPh|-*%x}XI3hU^X+)4RB~GQ5N9
+zQ%bg9A%Qpbep0u%yo*~@j@wf)y+78(yU*1Q`1{V0)--9#5O<xp4U;G9Gnxr-Lq=)R
+gC>hCFz(~#lMj9!!aF;X;(VI|4g_?vx_-Ebw8;Sap{r~^~
+
+diff --git out/production/HJ/UserLogin.class out/production/HJ/UserLogin.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..dc1b495bea64d054586e49d09da666e2b071e775
+GIT binary patch
+literal 1743
+zc${ri%W@l45It8?ENL{+E3y+O#E!#Dl0yVBfy6Q)L|DXRYzJ)1Sm8C&jODSV8P{kO
+z+pMX|2T+wIKadrVj44#bnqtFGP_Spof}(r$#+It)-hQ0ZeY^YK-~Rpi7XY`>kl=$q
+zh=7bU7!!!^s*lxNT{UaD)yl43bp*y14AXG#2>8>PQV=15sOO{}IJu&&HuMlA0<P<a
+zPSMco+LgcBU;oi|B?KWe>sf*Ev@+mbb8N$`<uj!)Vu%NkkdeeWf$&CCw-u{qm=sFg
+z-zQFGG*CW>@!{x-TG8tvobO^+$Yowa3NkZalyM0!2n6euI$K8QJY+tEDT3~+&E|n+
+zYx9h{B4eh9dPoL7#fvgt!po#<>du<+6)~MjFD+$CY<pEk8X00Co1z|BEh^Zh^l%{7
+zEvu$l)9pNCQka!-4X<@D_pFwwHHn)TnUizK$#@-akj^=DI+>>ig#9w-CCp(qh&Kh2
+zC#^xeB_QqTNB31ztLwIeoA5K@wv2h?sfwzmJ<yL7qv`0TZVOBgWvxHfO(!>G&U5GA
+z5s<g7YOC4jT<CD#mGK_#QGtoG$PNS6nG>ud4&5nuU&dnZ#GR_o;R6}>u_O?oDlJxb
+ztip~;e1UYKQ}_om6fE<kXqrHFC``d>>{}*<%4befGI&+SL+&VZD^^u?49jHw$1>Ki
+zPK6_V$!Hpty3QfXeEJfdZ~17`Fg5F-m%fAzu0Rl5GRk-)kf3ZvT?DS4D8Z<QHx;o?
+zCH)kxU}+RJrWmHa(rQ$6dtLSNNOGq2l4=_)ca;HW$Dr|vDE-Srz4bK?*!}<6k|oek
+z`Fc&HADwm~$*$TpqC0nrnM&<!({zUxs`c)JAgx&~yQ&ur&LrB;;5uXJ8pY^o0X+cV
+z`wjllg`{tY$J>)<y7HnY`yu!dqVMN`_=fg`7m@5SM7E9KRx*5y$a6$VNNpu2j&b2R
+zCOg7qPngdBh-gAwOW>)Ct1Ji?uh2RfUx?p`7vm`x+3#^ZfhQztEZ!iojhkD?c-zG-
+zPgo$~j*E8*H%+*5A6H;pxsNNvvo4CX4&w_W_$bGA@!=-#iM+RE>Vdk@+a~a9TywF)
+z`+$p&+SnkjO@-xI7oU7bMe^Yb`j#<4-!KC7Pf($zXa;8?;T9se3mL08OGS)gkD73Z
+zIG&K#Q)<Jv)QD&F1pS0@{7xKy;ynJw1^k0a;lo8CQH#DL=7~<}p`t>ok0Mo}QDef;
+zvE6A9U3s6^;BXr;O7l}?ke=ijE>mZx26P0jVaMyYfI-AGOW5u8n<l{L&BS;cb42&q
+W58R9HuE5k{h<c1xrrGmC*8c+;#fgLf
+
+diff --git out/production/HJ/布局2.class out/production/HJ/布局2.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d18873d1420ee31981e37c4833d27132a500dff8
+GIT binary patch
+literal 512
+zc${re%TB^j5IrM>La7CL`F`!tg-zTUj2jc&G#Z1!7*`jlcnP#gEgE+wei18-Bz}PZ
+z!EYGnmKtKhUCi7$bIzH2=lkdL3&08X3@jm`Lo<;?ijeP#XJPk+*R`)&J+~baQm4|B
+z;Ta)OJ!tAk6Re0NUP8Mbh=H4iK`<@?*>S|HKMW1%FqPjjp<H$5j*T#oUbm)Pa_sxZ
+zwqWWg5cKKC`*ienOwi8#j!Vcn(sM6|gO(fIh*qDGg5$SEzbOK#>KN3*NBKm^II+IQ
+z&_GC!P^sQ88qa+ZbXihd&?e9W@4@;1M~01tKMdM#U8<R8JnKl&u#Xj9qdH3<wMdRd
+zu58Z4Ie9n+jiPpmV=4kQlsTF+0xDSLoWUB_WAQZ-k!g7X{jQK1BkN3HMYsIz+{|K{
+dvQ%3yAsv}kW<qRWle2*=wy+(&Whc_@{sJ_qX3qcs
+
+diff --git out/production/HJ/HelloWorld.class out/production/HJ/HelloWorld.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..cfa22ae8f647f82ee921407a090b68a427275fdc
+GIT binary patch
+literal 534
+zc${sK&rZTX5XQfSLTRmnAoyRw6L_#kV=!J!jE6=|FnI8^zy_AIT~ihlA4?CKc<=#y
+zDC2Y`0TcExllkVG-)wfje?GqeoZ-kt23Z@HhaB<@r7?fze#qmYf7=_2zGldu%UJ3Q
+zhHSIdbx?p~!}YKN@1MQ%GSMO;mzvU0H835i{JTWPx}y`pqjmvn4BoW}LsfrJNjPY@
+zC}G`3*+T^z43#BQ4E9r6g)w29!NNvO^03|N+Nd$O25YDc)}<N<hGHONaWjp2BDv?i
+zkd$(u`aJCNM5gsjwDd?$=wiVf(Iz$Gl2+E5kIQyapC?0_sw`>KZ8~b2^u?7-`NcW+
+zB=w?!Dm{C8GGOV$Q{1G=r_3nljz7R&O?!)C-iQp_6umzKcCbs?!5;Q!!>0yD+8gZh
+Z>N|>afNQp8>F=xsh=T(h8gSh>8^4EKZi)Z^
+
+diff --git out/production/HJ/布局.class out/production/HJ/布局.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..1a2f8d25a12e67bed6876cbb7fb009fefc713705
+GIT binary patch
+literal 1512
+zc$|$?%W@k<6g@4=8fiSS{2(zV&f5XWvMmTnfG7#XO6(|%9D|G;LpCj`V|Oe~t7cku
+znH5#=0W8_GV4aOc#Z`Pj*8D<#fMu#6xjmyw<k(QCG}Aq|&pCbX>BqBwp8f&gGd!>n
+z!+?djgFz%1MjrERo^Nt*BY(g4SkyH`;=1&tzR56<$yO~S8HPg;-_iL+pSMI3HiNz7
+z%ZAH$RY%*f;26DQ497F>8^wzDrMFQqDrtuC*DC$gVT>B;7{g$uRLWM3*gFo6;{-!0
+z5IVv!oa_l3eiSQnk8cRS5OLmhFlkgQ;#B1K!o*HGm@=^;qoe9vOXXQO&5(XAwb0R8
+zd1K_wSqJBEo?)WJw?t8S1YeVSlX`*Xo(@cHrR?GAY@C8)X1nO%eSAQ+@kWDTrZ3;3
+zYPFRoJYC2h6||70g(&Z?Nw1-HTp4KL3ExHr14eh&!5ropMoIS|gyDSOEMl9)@&^$;
+zb3SzN5iZf9kr7oH$XZh{#53QTmAOnS{`~hJpFjD5LPgb}k+ds4vD|6Zgulu|?3l5y
+zS>?Vo-@Ra5Z%VQy=|=PdMOs{X3@0+*9kmO{nwqBJQTHwTi5Y9{m|5O7fkv35r$pM^
+z-=NvXkB}z7BXZC^xJ@a1tfF~+tIXTIjO~i*_;s-;&Bsub_Pk*cdqF83XrH&sLT{=@
+zkWS!B8!pNgmd)0<&oKRFX6bFKEzwIL+AWK`u9d&b@Js(0=m8_qyWDFuMKJ9uwbf}C
+z4p;JT#MRxlI0D}9MRa@%*~1b=-fUK+7KJ3fA|K5fFgPWT{4F+l5QxCSD#OM9m9zy~
+z$J74}r5zQ4$+nN_zA?WTn7MK2eTBaA)G}%ZXS!fd!r`m*PK3c2KB2c00q`l^T0jcd
+zQ0S5WqUa#CwS8FYW2r8N+}u8f*As~@M)okC8)dWf-@^p;ehz!@#cxcFq<+QhK2EJq
+zJ;fQIiwn!Sxjjs;?IW|^#mu#MZZf`y+)pv~+si+5)XkgB2ExoPQ9eK%HqAUid7h(F
+zl|z!sOW_tpmoS7C!c-~tkS;ZjbXdh@!r!9X>^g3c(h4ze;&alOBMZKu5o1mb3n)@+
+u;{k5t4pq4r)*t&Da~3T20`tUO3Z1!&617Rf+@og&Uxz$~3ckS_CSL(=8g)+q
+
+diff --git out/production/HJ/MyWindowListener.class out/production/HJ/MyWindowListener.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..9db05e2170f00b9939624dfa243cb1b5f0740812
+GIT binary patch
+literal 642
+zc$|Gw%TB^j5IrN6N-Yn;C!+XFK#i;o#>5A>scuw^?ke2iHQ1WANc=1}n7Hr*{3zqx
+zmS}>HyO^1KX3pu%oxXp(z5&?5x`7eIbZ90<5hoPx>_@v|_kxOe6i!gNlupa-?YHcQ
+zKzM}su5@IuM~Icm4Fh9H=rBx-!zAQ?rPfqTNVG)|0fbzsY<<;6VAVhhX&o686UY+M
+zLwSPXi=ZKWdD9UDt#qwEpTeYxDb=>#lKzA13mr3r%*j*4vZNmfNA;~8x-I6VE$N8U
+z?){DM&h1bsYq?Fk)380M?gLN@Zl$ks!$MU;vKJzU9oLsmn@}uSf6rYlHweUvh5w59
+zS$l&iCw@E(Pk!chy{4#3)mrMp7oO#|rL(Onv4m+}pgPL(3PG6VsKTBUvhf0X4%2gN
+z;~{u}JX<p=z&r}<2@6;pkgwD~!9Km&hkmjZ>m#|<NA6oD3ytj&lWQ<g=S3Wcl1mY7
+VAgQ7vW5jg^ma)QY!fL3p_6Y{nj1vF=
+
+diff --git out/production/HJ/布局1.class out/production/HJ/布局1.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..c14125c0bd1f092b2d6e22ffda349e8605ff0f96
+GIT binary patch
+literal 512
+zc${re%TB^j5IqBhLa7CL`F`!tg^f#tabtp;Mq@A-<LZJHFM&3xMdQxIFJgs}#1HU4
+z_zmOSQbSC*i<vuT&N*}MeE)oY0XW94fdrB|G!rSL35A|`7It5FUHh`#b2}j+eIh*>
+zo)VI^{g#dl!HP)YCA1rX7`Pc21mirA_l|h=hoJ!-rt(`NRBF!Lu^9%^>(-S^o_+t=
+z7EB#Qf<FCtpN`&+2-=x{?-KHk^xTW#pzQ|NqTOet==dGcZ;3#vItI1yQ9co}POPsp
+zG!W7wRBLyO#&cf;U6zy<v<dXUdvN~$kzu3h4}*@|kZPtG&pK2z>|vSLs7?Z;7Rj;1
+zmCczrrw+!TQPeJTOh;e>6^`bNfGSovXR(U4SbT+KWLlX(zb$6R$T<^O(XDVZH?x=q
+dXfW8M%+|`ZIul|Y8=MW~u!*hcE!&Z9=NB(;X2bvh
+
+diff --git out/production/HJ/Cardlayout.class out/production/HJ/Cardlayout.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6fada1acdd7011c1795bca416de0ee6e234f4ae
+GIT binary patch
+literal 1955
+zc$|Gy-BTM?6#rdFyJ6Xq5FjX&Vri*KppC8dqo!ip2#O>WO%0}6^(NVdrO9sGY@q5(
+z9Uq)(_01>889!!x(7tr01g1E?_~JO@v;F}vjQ@n=xpzZ8EV2)K&pr2?-}#-7dw>7u
+z!7l*L;iifXbSm&@IDmr;J<EKBNBOD~ow0dIXE=D?Fb!vlp)(XtEAY0OEO1jVs!-6`
+zg>GmH4r%Ctk3o%dJ747QTUCdlD@Pk?%HU75JI91$uZDo|>d9HAV_U^CmuCw48TuOb
+z0x}^XRrI+L2Q@r`M=4ycamFx^*uy2JlKHTP!x&*uD!P+0KA_|dgl1>MX>m5H;V~Q~
+zC^}0U6(d`uV^8R+$oUw9)=cR5X%%A_7xg;9;0q<1M==*Gq#=w5Lod(g7Y#FSttO0$
+zqno<TFcxak(^quUiMCrv2nCZGPT~~Rj_B+rHr(Rs>XO{#1?i*UiPpv>cvdfZafbNq
+z+`YTCacgVi$DJ?l{QdQJDxx?mxIe`ZtOFLgS%{__+b|2USvUSO8lJ^DYC5IB5NU}V
+zw@PKpB;v8~UP>=w^`H;#G=h5Z{4SH*4W)t?NZEk6RCOH7^x`5Zw>CZ_&f7nKv;FzE
+zJGVbkF@?C`{33OC56<DV7={@QFX3hCpsC+<vJ#D2koZpkBKV4o@M&uV;h)fu6#iXh
+zTX$_m+{+pk@T%L(i#f-z%>8=VZXx@UBF;??mYvsaw|QQ?PPZ#gZn`a|W>J*<4TkWZ
+z#cs*^a&}qIiCOdFDvfZ8u$EN3g=-4l*6<GAWf<C%*R+r+!2*rHRkd?8;r*fT!^q-(
+zWi{kLt@ns(G7PqnG97O0&T1d7YbXd)FBNXZu&NaW2E)j{r6J(Bl_vte1R>2=OIh8%
+z!sVq4B&-}Srnzm1eO>8smW&Er!`912&Rl{n==OEXF6qQ!^nY3+QzyO*jL;76XT)$Q
+z<?!5%Brn&4t8TSs46)I+H$L9Jck9e40m0BcuUDL;F8B+6vnC}MFY-!7uh4_iO^++X
+z5{)jz!wB&O>MISaT$A;cUNZU%dwPiJzYMT>k{N0LimZc0HlbwJ(X|G(Df&t5BXM92
+z!ALKg?8R?23`IOO9HEo33^^XJ;ql0Qa=MRT4HH7#L^KmP?ODf@H9Wo8&^-5$=6pl5
+ziK$HB!a6RkVcOly%FP_vPDg5(r**Er`h{G_5%RQ@1!&+(4QV0y0~wO;$&7E%|26c}
+z-v<xX%m)oaRIhRP>9y*`S*qCu3}TLIbd9QH(dkDR#uxOQe}xfzk0baAqgbbk|B9pd
+zgWl&qaSTO5)ZF@^1d~=qzGb(z_>dxZ(0X#BhBpPtAJ8L8Bxu&a>)N?Ctu6?6O2R?e
+z)N!JFg5(f|4Pz1$GHB2Rt_Ky;d$1{Ng=7ypf&+x%$keM?kve)zuu76DCHege#rE}e
+
+diff --git out/production/HJ/keyHandler.class out/production/HJ/keyHandler.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..96e8dd99775b21be5af4831a6f10aabfc7c9fc07
+GIT binary patch
+literal 1120
+zc$|e(TT|0O7(H7Gp(W5-?k!3Mga(j!!&@ujI5Ij0WGwc5+wRmrnlQ;0>A!J&z-M{D
+z86W%s{wBxq+oaZ!$}pMiez!g6e48&netr86;1M>Hh@nqITt`0!7}ERvh?@>~8|Itp
+zzNkrtfs*aoa)Y6-U{sPAL_$MS#}IUe$*`P%kft~it~6hZ_6ub&BpO1Ny_R1S3}Xeu
+zI*(gSU<4@*X&qOPq55}$@GY-ly9}B<mOH$uPFh`pJ#j3zY~j?4O2e3raZE5IiH1m@
+zdvy^Ce3ifyrZr@B<S_G3Kjn5HMU$$$7U>(0kZsT0^=(&{r7w7sps!(8Lte*q%rRto
+z*-0HyD))R}1Yx@kf>^)}4U0OKP+%DS4-H`)D$k)_#|ym>MnzrDvW^vXGwL>Wc@Sv0
+zN&Oy(_Dk;89pP&*8M3_}z_O`NSNII^=vq>i?TVdNvnu>OUUevvvAi00D%`h~-wDR$
+zdplszt-ln-h;Y{zK_IC0nSyn}2Pe%8j8LX8tYC<FRmI&i3Jk+#$!iDO{IH{Ch*;kW
+zNAQq#ki5P2p)!-vOl{e!YNR_eYYG#2tkN_ytkG!4>7|J#?-p4m?My|Mzk+=sBZk|w
+z4urux?$D}71-OfQv@@*Ze&_Hf^^4H{Y~>8v_Ub8yPmm*fG@bm2%qb=*a)zsCnE#Af
+zN*gDb`jbwDX(LK2;=YhLOVq#|(aqBwFVM3{v`g585sJx2gdH);dVq%{rynKyX&;lI
+tB1IF3{ltQXSdLPquHN;qKlC=b8e&gG$u2hQU^6_q9KyT=Vk4}7`Wr!P=Ewj5
+
+diff --git out/production/HJ/布局管理器.class out/production/HJ/布局管理器.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..db54254bcc57140695c50d96ee2ed0d93b9d5a4d
+GIT binary patch
+literal 1314
+zc${riOHb5L7(JJHw3N!D0*X(>*We)ITV#BKqG$&nD2T2KQ?Z0;wNoUx(wLZ-Xf$q=
+z#ElCRHkz;*h$Ol-{tgNHCyeK|L}cP*a=$a*ch9-scWyi1e}Dc0;24H9R3N4xt|Nh@
+zK<$|Iz{-qU?r7%n@R&Uk2qcd?t`nRTh^1Nw6sQ8#;U;S`$n^MD!B(LO=v|(lw|&!^
+z@+JZe3UsNsMxY^Ou4wiLzT=K&rA`e?e|1)qs}Yk5hK{wU7pN@SK~xghxU42gQ7&h>
+z)~M}MQ*s)0tiyT%g`9rpp)HU|_4Y=!4LUZ;T9wrEMy$Z`T$$gjV+*zlXv_~dMQ3=N
+zw0P>4>~fnx%}SROLEyP6w$qd!^Y4B=nbFV;UBxaYet!7Mgo+gL;)^#S-Xrnz2)Bi#
+zk0EZS{yD1{`m|5SejK2?Rz5G#`p<mbUg4hS+HR0F%Ws9#syIZILAw~JIKnae>BU_Y
+z9fW<JFJUK7>?Ymz6&&Z)=B5T6H}6fFPBE}u+t-kdj6S8~G|mXrv4z!J1X})S$bLYz
+z%<3KCU3Sx@#rY?TvyYZOy<d9uba8ryy>)we8d+mHuH83L7`FZER%opu%^x4Id`JFX
+zPR4_~PLVB`Wja}w3YOyvG^TF<?@40a@<&Ns`=7FaxWmcK)eo%H9G(dF%j3!}ce!*R
+z3J0TbC<=!KDhiXb|8ghE(&)cGV)r<5nEJ9I+T|(OhAzHr@>2mJUpKC2`76UH7!!Nu
+zAZEkzIj+eli5{-{GCq$BjFsrc#fU6&h(Tp;dI8FiQ8|YyGrfT7p*hr+P?xR~ZTyzd
+z5F&glp(!0NVbcPdhm4jv?8t>^CsALBb`y2RL)a=|B7|uPlj$~NZwZ<7UgMw)O>yIJ
+z7!$_PFeZ&-j0?!}^b?&*x=AVF<jO!7VQ^KTvEc>|v6ZM5RcPmU9auwms*yttZlV?=
+zsKXfd-{)Vz6zcJqjAv-XYrfuZu|72AS~NH=!DQ6%lI%X((g6#XafPRLVGvh|Vyu|l
+ee+6->pFuxSf@d7Tb)qCy72Lo8S3!pC_vRnP)Hk*O
+
